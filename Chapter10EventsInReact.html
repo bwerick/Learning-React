@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 
 
+<!--in this file I followed the steps in chapter 10 of Learning React to make the counter
+background and a functional increment button with a button click handler. I then used what 
+I learned to add a second button that decreases the count
+-->
+
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -24,7 +30,7 @@
     <body>
         <div id="container"></div>
         <script type="text/babel"> 
-            class Counter extends React.Component {
+            class Counter extends React.Component { //the number displayed
                 render() {
                     var textStyle = {
                         fontSize: 72,
@@ -47,12 +53,27 @@
                     this.state = {
                         count:0
                     };
+
+                    this.increase = this.increase.bind(this);
+                    this.decrease = this.decrease.bind(this);
+                }
+
+                increase(e) { //click handler increases count by 1
+                    this.setState({
+                        count: this.state.count +1
+
+                    });
+                }
+                decrease(e) { //click handler dcreases count by 1
+                    this.setState({
+                        count: this.state.count -1
+                    });
                 }
 
                 render () {
-                    var backgroundStyle = {
+                    var backgroundStyle = { //rounded rectangle shape and color
                         padding: 50,
-                        backgroundColor: "#FFC53A",
+                        backgroundColor: "#c7a0a6",
                         width: 250,
                         height: 100,
                         borderRadius: 10,
@@ -68,10 +89,12 @@
                         lineHeight: "3px"
                     };
 
+                    //creats the display with the button were binding with the click handler using OnClick
                     return (
                         <div style = {backgroundStyle}>
                             <Counter display={this.state.count} />
-                            <button style={buttonStyle}>+</button>
+                            <button onClick={this.increase} style={buttonStyle}>+</button> 
+                            <button onClick={this.decrease} style={buttonStyle}>-</button>
                         </div>
                     );
                 }
