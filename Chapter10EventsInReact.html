@@ -59,14 +59,30 @@ I learned to add a second button that decreases the count
                 }
 
                 increase(e) { //click handler increases count by 1
+                    var currentCount = this.state.count;
+                    
+                    if(e.shiftKey) { //increases count by 10 if shift key is held
+                        currentCount += 10;
+                    } else {
+                        currentCount += 1;
+                    }
+                    
                     this.setState({
-                        count: this.state.count +1
+                        count: currentCount
 
                     });
                 }
                 decrease(e) { //click handler dcreases count by 1
+                    var currentCount = this.state.count;
+
+                    if (e.shiftKey) { //decreases count by ten if shift is held
+                        currentCount -= 10;
+                    } else {
+                        currentCount -= 1;
+                    }
+
                     this.setState({
-                        count: this.state.count -1
+                        count: currentCount
                     });
                 }
 
